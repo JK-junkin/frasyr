@@ -442,6 +442,8 @@ ref.F <- function(
       tmp <- ifelse(tmp<=0,1,tmp)
       tmp <- ifelse(tmp>length(ypr.spr$F.range),length(ypr.spr$F.range),tmp)
       Fspr.init <- log(ypr.spr$F.range[tmp]) #original.perspr/i*100
+#       browser(i == 1)
+#       browser(!all(is.finite(Fspr.init)))
       FpSPR.res <- optimize(spr.f.est, Fspr.init,out=FALSE,sub=i,spr0=spr0)
       #nlm(spr.f.est, Fspr.init, out=FALSE, sub=i, spr0=spr0, iterlim=iterlim)
       #      cat("Estimate F%spr: initial value=", Fspr.init," : estimated value=",exp(FpSPR.res$estimate),"\n")
@@ -2190,7 +2192,7 @@ make_kobe_ratio <- function(result_vpa, result_msy) {
 #' @param file character string with the path to the file to source.
 #' @param lines numeric vector of lines to source in \code{file}.
 #'
-#' @export
+#' @exportl
 
 source_lines <- function(file, lines){
     source(textConnection(readLines(file)[lines]))
