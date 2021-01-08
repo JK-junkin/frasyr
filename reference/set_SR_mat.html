@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="将来予測用の再生産関係の設定を行う関数 — set_SR_mat" />
-<meta property="og:description" content="再生産関係をres_SRで与えると、res_vpaを見ながら残差を再計算したのち、start_random_rec_year_name以降の加入のdeviationを計算しSR_mat[,,&quot;deviance&quot;]に入れる。
-再生産関係をres_SRで与えると、res_vpaを見ながら残差を再計算したのち、start_random_rec_year_name以降の加入のdeviationを計算しSR_mat[,,&quot;deviance&quot;]に入れる。" />
+<meta property="og:description" content="再生産関係をres_SRで与えると、res_vpaを見ながら残差を再計算したのち、start_random_rec_year_name以降の加入のdeviationを計算しSR_mat[,,&quot;deviance&quot;]に入れる。" />
 
 
 
@@ -80,12 +79,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -97,6 +90,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/Diagnostics-for-VPA.html">VPAモデル診断スクリプト</a>
+    </li>
+    <li>
+      <a href="../articles/fittingSR.html">fitSR関数を使った再生産関係の推定</a>
     </li>
     <li>
       <a href="../articles/vpa.html">VPA関数を使った資源量推定</a>
@@ -126,40 +122,24 @@
 
     <div class="ref-description">
     <p>再生産関係をres_SRで与えると、res_vpaを見ながら残差を再計算したのち、start_random_rec_year_name以降の加入のdeviationを計算しSR_mat[,,"deviance"]に入れる。</p>
-<p>再生産関係をres_SRで与えると、res_vpaを見ながら残差を再計算したのち、start_random_rec_year_name以降の加入のdeviationを計算しSR_mat[,,"deviance"]に入れる。</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_SR_mat</span>(
-  res_vpa = <span class='kw'>NULL</span>,
-  <span class='kw'>start_random_rec_year_name</span>,
-  <span class='kw'>SR_mat</span>,
-  <span class='kw'>res_SR</span>,
-  <span class='kw'>seed_number</span>,
-  resid_type = <span class='st'>"lognormal"</span>,
-  bias_correction = <span class='fl'>TRUE</span>,
-  resample_year_range = <span class='fl'>0</span>,
-  backward_duration = <span class='fl'>5</span>,
-  recruit_intercept = <span class='fl'>0</span>,
-  recruit_age = <span class='fl'>0</span>,
-  model_average_option = <span class='kw'>NULL</span>,
-  regime_shift_option = <span class='kw'>NULL</span>
-)
-
-<span class='fu'>set_SR_mat</span>(
-  res_vpa = <span class='kw'>NULL</span>,
-  <span class='kw'>start_random_rec_year_name</span>,
-  <span class='kw'>SR_mat</span>,
-  <span class='kw'>res_SR</span>,
-  <span class='kw'>seed_number</span>,
-  resid_type = <span class='st'>"lognormal"</span>,
-  bias_correction = <span class='fl'>TRUE</span>,
-  resample_year_range = <span class='fl'>0</span>,
-  backward_duration = <span class='fl'>5</span>,
-  recruit_intercept = <span class='fl'>0</span>,
-  recruit_age = <span class='fl'>0</span>,
-  model_average_option = <span class='kw'>NULL</span>,
-  regime_shift_option = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>set_SR_mat</span><span class='op'>(</span>
+  res_vpa <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>start_random_rec_year_name</span>,
+  <span class='va'>SR_mat</span>,
+  <span class='va'>res_SR</span>,
+  <span class='va'>seed_number</span>,
+  resid_type <span class='op'>=</span> <span class='st'>"lognormal"</span>,
+  bias_correction <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  resample_year_range <span class='op'>=</span> <span class='fl'>0</span>,
+  backward_duration <span class='op'>=</span> <span class='fl'>5</span>,
+  recruit_intercept <span class='op'>=</span> <span class='fl'>0</span>,
+  recruit_age <span class='op'>=</span> <span class='fl'>0</span>,
+  model_average_option <span class='op'>=</span> <span class='cn'>NULL</span>,
+  regime_shift_option <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fix_recruit <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -222,7 +202,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

@@ -78,12 +78,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -95,6 +89,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/Diagnostics-for-VPA.html">VPAモデル診断スクリプト</a>
+    </li>
+    <li>
+      <a href="../articles/fittingSR.html">fitSR関数を使った再生産関係の推定</a>
     </li>
     <li>
       <a href="../articles/vpa.html">VPA関数を使った資源量推定</a>
@@ -173,13 +170,19 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="arrange_weight.html">arrange_weight()</a></code> </p>
+        </td>
+        <td><p>モデルのAICから計算される重みに応じて、複数のモデルからシミュレーション結果を抜き出す</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="autocor.plot.html">autocor.plot()</a></code> </p>
         </td>
         <td><p>再生産関係における残差の時系列の自己相関等についてのプロット</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="average_SR_mat.html">average_SR_mat()</a></code> <code><a href="average_SR_mat.html">average_SR_mat()</a></code> </p>
+          <p><code><a href="average_SR_mat.html">average_SR_mat()</a></code> </p>
         </td>
         <td><p>モデル平均的な再生産関係を与える</p></td>
       </tr><tr>
@@ -257,6 +260,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="calc_steepness.html">calc_steepness()</a></code> </p>
+        </td>
+        <td><p>Steepness (h) と関連するパラメータ (SB0,R0,B0)を計算する関数</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="check.SRdist.html">check.SRdist()</a></code> </p>
         </td>
         <td><p>再生産関係の残差の確率分布に関するチェック図を出力する関数</p></td>
@@ -266,6 +275,12 @@
           <p><code><a href="check.SRfit.html">check.SRfit()</a></code> </p>
         </td>
         <td><p>再生産関係推定が収束しているかや最適解を得られているかを診断する関数</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="check_MSE_sd0.html">check_MSE_sd0()</a></code> </p>
+        </td>
+        <td><p>MSEの計算が正しいかを確認するための関数</p></td>
       </tr><tr>
         
         <td>
@@ -317,6 +332,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="convert_future_list_table.html">convert_future_list_table()</a></code> </p>
+        </td>
+        <td><p>future_vpaの結果オブジェクトのリストをtibble形式に変換する関数</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="convert_future_table.html">convert_future_table()</a></code> </p>
         </td>
         <td><p>future_vpaの結果オブジェクトをtibble形式に変換する関数</p></td>
@@ -326,6 +347,12 @@
           <p><code><a href="convert_vpa_tibble.html">convert_vpa_tibble()</a></code> </p>
         </td>
         <td><p>VPAの結果オブジェクトをtibble形式に変換する関数</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="corSR.html">corSR()</a></code> </p>
+        </td>
+        <td><p>再生産関係の推定パラメータの相関を出力する関数</p></td>
       </tr><tr>
         
         <td>
@@ -437,7 +464,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="future_vpa.html">future_vpa()</a></code> <code><a href="future_vpa.html">future_vpa()</a></code> </p>
+          <p><code><a href="future_vpa.html">future_vpa()</a></code> </p>
         </td>
         <td><p>将来予測の実施関数</p></td>
       </tr><tr>
@@ -509,15 +536,21 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="make_array.html">make_array()</a></code> <code><a href="make_array.html">make_array()</a></code> </p>
+          <p><code><a href="make_array.html">make_array()</a></code> </p>
         </td>
         <td><p>将来予測用の三次元行列（年齢×年×シミュレーション）を与えられたら, pars.yearで指定された期間のパラメータを平均するか、parで指定されたパラメータを、year_replace_future以降の年で置き換える</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="make_future_data.html">make_future_data()</a></code> <code><a href="make_future_data.html">make_future_data()</a></code> </p>
+          <p><code><a href="make_future_data.html">make_future_data()</a></code> </p>
         </td>
         <td><p>future_vpaにインプットとして入れる将来予測の空のarrayを生成する関数</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="make_kobeII_table.html">make_kobeII_table()</a></code> </p>
+        </td>
+        <td><p>beta.simluationの結果などを読んで、kobeII talbeに整形する関数</p></td>
       </tr><tr>
         
         <td>
@@ -678,6 +711,12 @@ Pull data frame from list</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="redo_future.html">redo_future()</a></code> </p>
+        </td>
+        <td><p>re-calculate projection with different arguments</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="ref.F.html">ref.F()</a></code> </p>
         </td>
         <td><p>再生産関係を仮定しない管理基準値計算(SPR,YPR,F0.1,Fmax)のための関数</p></td>
@@ -696,21 +735,27 @@ Pull data frame from list</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="safe_call.html">safe_call()</a></code> <code><a href="safe_call.html">safe_call()</a></code> </p>
+          <p><code><a href="safe_call.html">safe_call()</a></code> </p>
         </td>
         <td><p>do.callのsafe版</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="sample_backward.html">sample_backward()</a></code> <code><a href="sample_backward.html">sample_backward()</a></code> </p>
+          <p><code><a href="sample_backward.html">sample_backward()</a></code> </p>
         </td>
         <td><p>過去にさかのぼってブロックサンプリングをおこなう</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="set_SR_mat.html">set_SR_mat()</a></code> <code><a href="set_SR_mat.html">set_SR_mat()</a></code> </p>
+          <p><code><a href="set_SR_mat.html">set_SR_mat()</a></code> </p>
         </td>
         <td><p>将来予測用の再生産関係の設定を行う関数</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="source_lines.html">source_lines()</a></code> </p>
+        </td>
+        <td><p>Source specific lines in an R file</p></td>
       </tr><tr>
         
         <td>
@@ -732,6 +777,18 @@ Pull data frame from list</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="take_interval.html">take_interval()</a></code> </p>
+        </td>
+        <td><p>@export</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="test_sd0_future.html">test_sd0_future()</a></code> </p>
+        </td>
+        <td><p>将来予測においてFが非常に小さい場合には決定論的予測と確率論的予測の平均がほぼ一致するかを確認するための関数</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="theme_SH.html">theme_SH()</a></code> </p>
         </td>
         <td><p>会議用の図のフォーマット</p></td>
@@ -747,6 +804,12 @@ Pull data frame from list</p></td>
           <p><code><a href="use_rvpa_tmb.html">use_rvpa_tmb()</a></code> </p>
         </td>
         <td><p>Ridge VPAの計算をTMBで実行するためにcppファイルのコンパイル等をする関数</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="validate_sr.html">validate_sr()</a></code> </p>
+        </td>
+        <td><p>再生産関係のパラメタが想定した形になっているかを確認</p></td>
       </tr><tr>
         
         <td>
@@ -772,7 +835,7 @@ Pull data frame from list</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

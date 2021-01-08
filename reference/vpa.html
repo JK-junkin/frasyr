@@ -79,12 +79,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -96,6 +90,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/Diagnostics-for-VPA.html">VPAモデル診断スクリプト</a>
+    </li>
+    <li>
+      <a href="../articles/fittingSR.html">fitSR関数を使った再生産関係の推定</a>
     </li>
     <li>
       <a href="../articles/vpa.html">VPA関数を使った資源量推定</a>
@@ -127,80 +124,86 @@
     <p>VPAによる資源計算を実施する</p>
     </div>
 
-    <pre class="usage"><span class='fu'>vpa</span>(
-  <span class='kw'>dat</span>,
-  sel.f = <span class='kw'>NULL</span>,
-  tf.year = <span class='fl'>2008</span><span class='op'>:</span><span class='fl'>2010</span>,
-  rec.new = <span class='kw'>NULL</span>,
-  rec = <span class='kw'>NULL</span>,
-  rec.year = <span class='fl'>2010</span>,
-  rps.year = <span class='fl'>2001</span><span class='op'>:</span><span class='fl'>2010</span>,
-  fc.year = <span class='fl'>2009</span><span class='op'>:</span><span class='fl'>2011</span>,
-  last.year = <span class='kw'>NULL</span>,
-  last.catch.zero = <span class='fl'>FALSE</span>,
-  faa0 = <span class='kw'>NULL</span>,
-  naa0 = <span class='kw'>NULL</span>,
-  f.new = <span class='kw'>NULL</span>,
-  Pope = <span class='fl'>TRUE</span>,
-  p.pope = <span class='fl'>0.5</span>,
-  tune = <span class='fl'>FALSE</span>,
-  abund = <span class='st'>"B"</span>,
-  min.age = <span class='fl'>0</span>,
-  max.age = <span class='fl'>0</span>,
-  link = <span class='st'>"id"</span>,
-  base = <span class='fl'>NA</span>,
-  af = <span class='fl'>NA</span>,
-  p.m = <span class='fl'>0.5</span>,
-  omega = <span class='kw'>NULL</span>,
-  index.w = <span class='kw'>NULL</span>,
-  use.index = <span class='st'>"all"</span>,
-  scale = <span class='fl'>1000</span>,
-  hessian = <span class='fl'>TRUE</span>,
-  alpha = <span class='fl'>1</span>,
-  maxit = <span class='fl'>5</span>,
-  d = <span class='fl'>1e-04</span>,
-  min.caa = <span class='fl'>0.001</span>,
-  plot = <span class='fl'>FALSE</span>,
-  plot.year = <span class='fl'>1998</span><span class='op'>:</span><span class='fl'>2015</span>,
-  term.F = <span class='st'>"max"</span>,
-  plus.group = <span class='fl'>TRUE</span>,
-  stat.tf = <span class='st'>"mean"</span>,
-  add.p.est = <span class='kw'>NULL</span>,
-  add.p.ini = <span class='kw'>NULL</span>,
-  sel.update = <span class='fl'>FALSE</span>,
-  sel.def = <span class='st'>"max"</span>,
-  max.dd = <span class='fl'>1e-06</span>,
-  ti.scale = <span class='kw'>NULL</span>,
-  tf.mat = <span class='kw'>NULL</span>,
-  eq.tf.mean = <span class='fl'>FALSE</span>,
-  no.est = <span class='fl'>FALSE</span>,
-  est.method = <span class='st'>"ls"</span>,
-  b.est = <span class='fl'>FALSE</span>,
-  est.constraint = <span class='fl'>FALSE</span>,
-  q.const = <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>abund</span>),
-  b.const = <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>abund</span>),
-  q.fix = <span class='kw'>NULL</span>,
-  b.fix = <span class='kw'>NULL</span>,
-  sigma.const = <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>abund</span>),
-  fixed.index.var = <span class='kw'>NULL</span>,
-  max.iter = <span class='fl'>100</span>,
-  optimizer = <span class='st'>"nlm"</span>,
-  Lower = <span class='op'>-</span><span class='fl'>Inf</span>,
-  Upper = <span class='fl'>Inf</span>,
-  p.fix = <span class='kw'>NULL</span>,
-  lambda = <span class='fl'>0</span>,
-  beta = <span class='fl'>2</span>,
-  penalty = <span class='st'>"p"</span>,
-  ssb.def = <span class='st'>"i"</span>,
-  ssb.lag = <span class='fl'>0</span>,
-  TMB = <span class='fl'>FALSE</span>,
-  sel.rank = <span class='kw'>NULL</span>,
-  p.init = <span class='fl'>0.2</span>,
-  sigma.constraint = <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>abund</span>),
-  eta = <span class='kw'>NULL</span>,
-  eta.age = <span class='fl'>0</span>,
-  tmb.file = <span class='st'>"rvpa_tmb"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>vpa</span><span class='op'>(</span>
+  <span class='va'>dat</span>,
+  sel.f <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tf.year <span class='op'>=</span> <span class='fl'>2008</span><span class='op'>:</span><span class='fl'>2010</span>,
+  rec.new <span class='op'>=</span> <span class='cn'>NULL</span>,
+  rec <span class='op'>=</span> <span class='cn'>NULL</span>,
+  rec.year <span class='op'>=</span> <span class='fl'>2010</span>,
+  rps.year <span class='op'>=</span> <span class='fl'>2001</span><span class='op'>:</span><span class='fl'>2010</span>,
+  fc.year <span class='op'>=</span> <span class='fl'>2009</span><span class='op'>:</span><span class='fl'>2011</span>,
+  last.year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  last.catch.zero <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  faa0 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  naa0 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  f.new <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Pope <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  p.pope <span class='op'>=</span> <span class='fl'>0.5</span>,
+  tune <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  abund <span class='op'>=</span> <span class='st'>"B"</span>,
+  min.age <span class='op'>=</span> <span class='fl'>0</span>,
+  max.age <span class='op'>=</span> <span class='fl'>0</span>,
+  link <span class='op'>=</span> <span class='st'>"id"</span>,
+  base <span class='op'>=</span> <span class='cn'>NA</span>,
+  af <span class='op'>=</span> <span class='cn'>NA</span>,
+  p.m <span class='op'>=</span> <span class='fl'>0.5</span>,
+  omega <span class='op'>=</span> <span class='cn'>NULL</span>,
+  index.w <span class='op'>=</span> <span class='cn'>NULL</span>,
+  use.index <span class='op'>=</span> <span class='st'>"all"</span>,
+  scale <span class='op'>=</span> <span class='fl'>1000</span>,
+  hessian <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  maxit <span class='op'>=</span> <span class='fl'>5</span>,
+  d <span class='op'>=</span> <span class='fl'>1e-04</span>,
+  min.caa <span class='op'>=</span> <span class='fl'>0.001</span>,
+  plot <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  plot.year <span class='op'>=</span> <span class='fl'>1998</span><span class='op'>:</span><span class='fl'>2015</span>,
+  term.F <span class='op'>=</span> <span class='st'>"max"</span>,
+  plus.group <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stat.tf <span class='op'>=</span> <span class='st'>"mean"</span>,
+  add.p.est <span class='op'>=</span> <span class='cn'>NULL</span>,
+  add.p.ini <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sel.update <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  sel.def <span class='op'>=</span> <span class='st'>"max"</span>,
+  max.dd <span class='op'>=</span> <span class='fl'>1e-06</span>,
+  ti.scale <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tf.mat <span class='op'>=</span> <span class='cn'>NULL</span>,
+  eq.tf.mean <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  no.est <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  est.method <span class='op'>=</span> <span class='st'>"ls"</span>,
+  b.est <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  est.constraint <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  q.const <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>abund</span><span class='op'>)</span>,
+  b.const <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>abund</span><span class='op'>)</span>,
+  q.fix <span class='op'>=</span> <span class='cn'>NULL</span>,
+  b.fix <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sigma.const <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>abund</span><span class='op'>)</span>,
+  fixed.index.var <span class='op'>=</span> <span class='cn'>NULL</span>,
+  max.iter <span class='op'>=</span> <span class='fl'>100</span>,
+  optimizer <span class='op'>=</span> <span class='st'>"nlm"</span>,
+  Lower <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>,
+  Upper <span class='op'>=</span> <span class='cn'>Inf</span>,
+  p.fix <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lambda <span class='op'>=</span> <span class='fl'>0</span>,
+  beta <span class='op'>=</span> <span class='fl'>2</span>,
+  penalty <span class='op'>=</span> <span class='st'>"p"</span>,
+  ssb.def <span class='op'>=</span> <span class='st'>"i"</span>,
+  ssb.lag <span class='op'>=</span> <span class='fl'>0</span>,
+  TMB <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  sel.rank <span class='op'>=</span> <span class='cn'>NULL</span>,
+  p.init <span class='op'>=</span> <span class='fl'>0.2</span>,
+  sigma.constraint <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>abund</span><span class='op'>)</span>,
+  eta <span class='op'>=</span> <span class='cn'>NULL</span>,
+  eta.age <span class='op'>=</span> <span class='fl'>0</span>,
+  tmb.file <span class='op'>=</span> <span class='st'>"rvpa_tmb"</span>,
+  madara <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  p_by_age <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  penalty_age <span class='op'>=</span> <span class='cn'>NULL</span>,
+  no_eta_age <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sdreport <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  use.equ <span class='op'>=</span> <span class='st'>"new"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -367,7 +370,7 @@
     </tr>
     <tr>
       <th>est.method</th>
-      <td><p>推定方法 （ls = 最小二乗法，ml = 最尤法）</p></td>
+      <td><p>推定方法 （ls = 最小二乗法，ml = 最尤法,  ls_nolog =最小二乗法で実数)</p></td>
     </tr>
     <tr>
       <th>b.est</th>
@@ -391,11 +394,15 @@
     </tr>
     <tr>
       <th>lambda</th>
-      <td><p>ridge回帰係数</p></td>
+      <td><p>ridge penaltyの大きさ</p></td>
     </tr>
     <tr>
       <th>beta</th>
       <td><p>penaltyのexponent  (beta = 1: lasso, 2: ridge)</p></td>
+    </tr>
+    <tr>
+      <th>penalty</th>
+      <td><p>ridgeVPAの際に与えるpenaltyの種類．"p"=指定した年齢範囲の最終年の年齢別Fのbeta乗の和，"f"=｛最終年の年齢aのF－（tf.yearで指定した年のa歳の平均のF)｝のbeta乗の和，"s"=｛最終年の年齢aのs－（tf.yearで指定した年のa歳の平均のs)｝のbeta乗の和</p></td>
     </tr>
     <tr>
       <th>ssb.def</th>
@@ -407,7 +414,7 @@
     </tr>
     <tr>
       <th>TMB</th>
-      <td><p>TMBで高速計算する場合TMB=TRUE (事前にuse_rvpa_tmb()を実行)</p></td>
+      <td><p>TMBで高速計算する場合TMB=TRUE (事前にuse_rvpa_tmb()を実行)　全Ｆ推定法，POPE=TRUE, alpha=1, 途中でプラスグループが変化しない場合のみのときに使用可能</p></td>
     </tr>
     <tr>
       <th>sigma.constraint</th>
@@ -425,7 +432,65 @@
       <th>tmb.file</th>
       <td><p>TMB=TRUEのとき使用するcppファイルの名前</p></td>
     </tr>
+    <tr>
+      <th>madara</th>
+      <td><p>マダラ太平洋系群で用いているチューニングのやり方</p></td>
+    </tr>
+    <tr>
+      <th>p_by_age</th>
+      <td><p>選択率更新法でridgeVPAの際にpenalty="p"のときに年齢別にペナルテイーを与えるか与えないか．与えたい場合はTRUEとして,penalty_age（eta=NULLのとき）もしくはno_eta_age(etaがNULLでないとき）に年齢範囲を指定する．</p></td>
+    </tr>
+    <tr>
+      <th>penalty_age</th>
+      <td><p>選択率更新法でridgeVPAをする際のpenalty="p"のときで，etaがNULLで，p_by_age=TRUE (年齢別にペナルテイーを与えたい）ときにペナルテイーを与える年齢範囲．0歳から2歳までなら0：２とする．</p></td>
+    </tr>
+    <tr>
+      <th>no_eta_age</th>
+      <td><p>選択率更新法でridgeVPAの際にpenalty="p"のときで，etaがNULLでなく，p_by_age=TRUE (年齢別にペナルテイーを与えたい）ときに，etaがかからないほうの年齢範囲</p></td>
+    </tr>
+    <tr>
+      <th>sdreport</th>
+      <td><p><code>TMB=TRUE</code>のときに<code>sdreport()</code>を実行するかどうか（naa, faa, 資源量, 親魚量, Fの平均, 漁獲割合のSDを計算する）</p></td>
+    </tr>
+    <tr>
+      <th>use.equ</th>
+      <td><p>plus groupが途中で変わる場合の計算式の選択 （old = 従来の方法（プラスグループが延長している年はプラスグループのＦが一歳若い年齢のＦと等しいという仮定は置かない），new= 新しい方法（プラスグループが延長している年はプラスグループのＦが一歳若い年齢のＦと等しいという仮定を置く)</p></td>
+    </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>list object:</p><dl>
+<dt><code>input</code></dt><dd><p>解析に用いたデータや仮定</p></dd>
+<dt><code>term.f</code></dt><dd><p>推定されたターミナルF</p></dd>
+<dt><code>np</code></dt><dd><p>推定されたターミナルFの数</p></dd>
+<dt><code>minimum</code></dt><dd><p>最適解における目的関数の値（合計）</p></dd>
+<dt><code>minimum.c</code></dt><dd><p>最適解における目的関数の値（個々）</p></dd>
+<dt><code>logLik</code></dt><dd><p>負の対数尤度</p></dd>
+<dt><code>gradient</code></dt><dd><p>最適解での傾き</p></dd>
+<dt><code>code</code></dt><dd><p>最適化法から返されるコード（どのような理由で最適化が停止したのかがわかる）</p></dd>
+<dt><code>q</code></dt><dd><p>推定されたq（資源量指標値の比例定数））</p></dd>
+<dt><code>b</code></dt><dd><p>推定されたb（資源量指標値の非線形性））</p></dd>
+<dt><code>sigma</code></dt><dd><p>資源量指標値の分散の平方根</p></dd>
+<dt><code>convergence</code></dt><dd><p>解が収束していれば1，そうでないと0</p></dd>
+<dt><code>message</code></dt><dd><p>最適化に関する注意（あれば）</p></dd>
+<dt><code>hessian</code></dt><dd><p>ヘッセ行列の値</p></dd>
+<dt><code>Ft</code></dt><dd><p>最終年のFの平均値</p></dd>
+<dt><code>Fc.at.age</code></dt><dd><p>Fcurrentで指定した年における平均のF</p></dd>
+<dt><code>Fc.mean</code></dt><dd><p>Fc.at.ageを平均したもの</p></dd>
+<dt><code>Fc.max</code></dt><dd><p>Fc.at.ageの最大値</p></dd>
+<dt><code>last.year</code></dt><dd><p>vpaを計算する最終年を別に指定した場合</p></dd>
+<dt><code>Pope</code></dt><dd><p>popeの近似式を用いたか否か</p></dd>
+<dt><code>ssb.coef</code></dt><dd><p>産卵親魚量の計算時期（年始めなら0,年中央なら0.5,年最後なら1)</p></dd>
+<dt><code>pred.index</code></dt><dd><p>推定された資源量指標値</p></dd>
+<dt><code>wcaa</code></dt><dd><p>caa*waa.catch</p></dd>
+<dt><code>naa</code></dt><dd><p>推定された年別年齢別資源尾数</p></dd>
+<dt><code>faa</code></dt><dd><p>推定された年別年齢別漁獲係数</p></dd>
+<dt><code>baa</code></dt><dd><p>推定された年別年齢別資源重量</p></dd>
+<dt><code>sbb</code></dt><dd><p>推定された年別年齢別産卵親魚量</p></dd>
+<dt><code>saa</code></dt><dd><p>推定された年別年齢別選択率</p></dd>
+
+</dl>
 
 
   </div>
@@ -443,7 +508,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

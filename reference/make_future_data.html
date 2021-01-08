@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="future_vpaにインプットとして入れる将来予測の空のarrayを生成する関数 — make_future_data" />
-<meta property="og:description" content="future_vpaにインプットとして入れる将来予測の空のarrayを生成する関数
-future_vpaにインプットとして入れる将来予測の空のarrayを生成する関数" />
+<meta property="og:description" content="future_vpaにインプットとして入れる将来予測の空のarrayを生成する関数" />
 
 
 
@@ -80,12 +79,6 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -97,6 +90,9 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/Diagnostics-for-VPA.html">VPAモデル診断スクリプト</a>
+    </li>
+    <li>
+      <a href="../articles/fittingSR.html">fitSR関数を使った再生産関係の推定</a>
     </li>
     <li>
       <a href="../articles/vpa.html">VPA関数を使った資源量推定</a>
@@ -126,88 +122,58 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
 
     <div class="ref-description">
     <p>future_vpaにインプットとして入れる将来予測の空のarrayを生成する関数</p>
-<p>future_vpaにインプットとして入れる将来予測の空のarrayを生成する関数</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_future_data</span>(
-  <span class='kw'>res_vpa</span>,
-  nsim = <span class='fl'>1000</span>,
-  nyear = <span class='fl'>50</span>,
-  plus_age = <span class='kw'>NULL</span>,
-  future_initial_year_name = <span class='fl'>2017</span>,
-  start_F_year_name = <span class='fl'>2018</span>,
-  start_biopar_year_name = <span class='fl'>2018</span>,
-  start_random_rec_year_name = <span class='fl'>2018</span>,
-  <span class='kw'>waa_year</span>,
-  waa = <span class='kw'>NULL</span>,
-  <span class='kw'>waa_catch_year</span>,
-  waa_catch = <span class='kw'>NULL</span>,
-  <span class='kw'>maa_year</span>,
-  maa = <span class='kw'>NULL</span>,
-  <span class='kw'>M_year</span>,
-  M = <span class='kw'>NULL</span>,
-  faa_year = <span class='kw'>NULL</span>,
-  currentF = <span class='kw'>NULL</span>,
-  futureF = <span class='kw'>NULL</span>,
-  start_ABC_year_name = <span class='fl'>2019</span>,
-  HCR_beta = <span class='fl'>1</span>,
-  HCR_Blimit = <span class='op'>-</span><span class='fl'>1</span>,
-  HCR_Bban = <span class='op'>-</span><span class='fl'>1</span>,
-  HCR_year_lag = <span class='fl'>0</span>,
-  HCR_beta_year = <span class='kw'>NULL</span>,
-  Pope = <span class='kw'>res_vpa</span><span class='op'>$</span><span class='kw'>input</span><span class='op'>$</span><span class='kw'>Pope</span>,
-  fix_recruit = <span class='kw'>NULL</span>,
-  fix_wcatch = <span class='kw'>NULL</span>,
-  res_SR = <span class='kw'>NULL</span>,
-  seed_number = <span class='fl'>1</span>,
-  resid_type = <span class='st'>"lognormal"</span>,
-  bias_correction = <span class='fl'>TRUE</span>,
-  resample_year_range = <span class='fl'>0</span>,
-  backward_duration = <span class='fl'>5</span>,
-  recruit_intercept = <span class='fl'>0</span>,
-  model_average_option = <span class='kw'>NULL</span>,
-  regime_shift_option = <span class='kw'>NULL</span>
-)
-
-<span class='fu'>make_future_data</span>(
-  <span class='kw'>res_vpa</span>,
-  nsim = <span class='fl'>1000</span>,
-  nyear = <span class='fl'>50</span>,
-  plus_age = <span class='kw'>NULL</span>,
-  future_initial_year_name = <span class='fl'>2017</span>,
-  start_F_year_name = <span class='fl'>2018</span>,
-  start_biopar_year_name = <span class='fl'>2018</span>,
-  start_random_rec_year_name = <span class='fl'>2018</span>,
-  <span class='kw'>waa_year</span>,
-  waa = <span class='kw'>NULL</span>,
-  <span class='kw'>waa_catch_year</span>,
-  waa_catch = <span class='kw'>NULL</span>,
-  <span class='kw'>maa_year</span>,
-  maa = <span class='kw'>NULL</span>,
-  <span class='kw'>M_year</span>,
-  M = <span class='kw'>NULL</span>,
-  faa_year = <span class='kw'>NULL</span>,
-  currentF = <span class='kw'>NULL</span>,
-  futureF = <span class='kw'>NULL</span>,
-  start_ABC_year_name = <span class='fl'>2019</span>,
-  HCR_beta = <span class='fl'>1</span>,
-  HCR_Blimit = <span class='op'>-</span><span class='fl'>1</span>,
-  HCR_Bban = <span class='op'>-</span><span class='fl'>1</span>,
-  HCR_year_lag = <span class='fl'>0</span>,
-  HCR_beta_year = <span class='kw'>NULL</span>,
-  Pope = <span class='kw'>res_vpa</span><span class='op'>$</span><span class='kw'>input</span><span class='op'>$</span><span class='kw'>Pope</span>,
-  fix_recruit = <span class='kw'>NULL</span>,
-  fix_wcatch = <span class='kw'>NULL</span>,
-  res_SR = <span class='kw'>NULL</span>,
-  seed_number = <span class='fl'>1</span>,
-  resid_type = <span class='st'>"lognormal"</span>,
-  bias_correction = <span class='fl'>TRUE</span>,
-  resample_year_range = <span class='fl'>0</span>,
-  backward_duration = <span class='fl'>5</span>,
-  recruit_intercept = <span class='fl'>0</span>,
-  model_average_option = <span class='kw'>NULL</span>,
-  regime_shift_option = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>make_future_data</span><span class='op'>(</span>
+  <span class='va'>res_vpa</span>,
+  nsim <span class='op'>=</span> <span class='fl'>1000</span>,
+  nyear <span class='op'>=</span> <span class='fl'>50</span>,
+  plus_age <span class='op'>=</span> <span class='cn'>NULL</span>,
+  future_initial_year_name <span class='op'>=</span> <span class='fl'>2017</span>,
+  start_F_year_name <span class='op'>=</span> <span class='fl'>2018</span>,
+  start_biopar_year_name <span class='op'>=</span> <span class='fl'>2018</span>,
+  start_random_rec_year_name <span class='op'>=</span> <span class='fl'>2018</span>,
+  <span class='va'>waa_year</span>,
+  waa <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>waa_catch_year</span>,
+  waa_catch <span class='op'>=</span> <span class='cn'>NULL</span>,
+  waa_fun <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  start_waafun_year_name <span class='op'>=</span> <span class='va'>start_biopar_year_name</span>,
+  <span class='va'>maa_year</span>,
+  maa <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>M_year</span>,
+  M <span class='op'>=</span> <span class='cn'>NULL</span>,
+  faa_year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  currentF <span class='op'>=</span> <span class='cn'>NULL</span>,
+  futureF <span class='op'>=</span> <span class='cn'>NULL</span>,
+  start_ABC_year_name <span class='op'>=</span> <span class='fl'>2019</span>,
+  HCR_beta <span class='op'>=</span> <span class='fl'>1</span>,
+  HCR_Blimit <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>,
+  HCR_Bban <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>,
+  HCR_year_lag <span class='op'>=</span> <span class='fl'>0</span>,
+  HCR_beta_year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  HCR_Blimit_year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  HCR_Bban_year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  HCR_TAC_reserve_rate <span class='op'>=</span> <span class='cn'>NA</span>,
+  HCR_TAC_carry_rate <span class='op'>=</span> <span class='cn'>NA</span>,
+  HCR_function_name <span class='op'>=</span> <span class='st'>"HCR_default"</span>,
+  Pope <span class='op'>=</span> <span class='va'>res_vpa</span><span class='op'>$</span><span class='va'>input</span><span class='op'>$</span><span class='va'>Pope</span>,
+  fix_recruit <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fix_wcatch <span class='op'>=</span> <span class='cn'>NULL</span>,
+  max_F <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>,
+  max_exploitation_rate <span class='op'>=</span> <span class='fl'>0.99</span>,
+  res_SR <span class='op'>=</span> <span class='cn'>NULL</span>,
+  seed_number <span class='op'>=</span> <span class='fl'>1</span>,
+  resid_type <span class='op'>=</span> <span class='st'>"lognormal"</span>,
+  bias_correction <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  resample_year_range <span class='op'>=</span> <span class='fl'>0</span>,
+  backward_duration <span class='op'>=</span> <span class='fl'>5</span>,
+  recruit_intercept <span class='op'>=</span> <span class='fl'>0</span>,
+  model_average_option <span class='op'>=</span> <span class='cn'>NULL</span>,
+  regime_shift_option <span class='op'>=</span> <span class='cn'>NULL</span>,
+  silent <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  special_setting <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,7 +192,7 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
     </tr>
     <tr>
       <th>plus_age</th>
-      <td><p>プラスグループの年齢。デフォルト値（NULL）ならfuture_initial_year_name年にNA以外の数値が入っている一番大きい年齢をプラスグループの年齢とする</p></td>
+      <td><p>プラスグループとして計算する行（年齢ではないことに注意）。デフォルト値（NULL）ならfuture_initial_year_name年にNA以外の数値が入っている一番大きい年齢をプラスグループの年齢とする</p></td>
     </tr>
     <tr>
       <th>future_initial_year_name</th>
@@ -253,6 +219,14 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
       <td><p>将来の年齢別体重を直接与える場合, maa, M_yearも同様</p></td>
     </tr>
     <tr>
+      <th>waa_fun</th>
+      <td><p>log(weight)~log(number)の回帰式から将来のweightを予測する</p></td>
+    </tr>
+    <tr>
+      <th>start_waafun_year_name</th>
+      <td><p>上記の設定がスタートする最初の年。それ以外の年は上で設定されたパラメータが使われる</p></td>
+    </tr>
+    <tr>
       <th>faa_year</th>
       <td><p>将来のFを過去の平均値とする場合、平均をとる年を指定する。下のcurrentF, futureFが指定されている場合にはこの設定は無視される</p></td>
     </tr>
@@ -273,6 +247,10 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
       <td><p>HCRのbeta</p></td>
     </tr>
     <tr>
+      <th>HCR_Blimit</th>
+      <td><p>HCRのBlimit</p></td>
+    </tr>
+    <tr>
       <th>HCR_Bban</th>
       <td><p>HCRのBban</p></td>
     </tr>
@@ -282,7 +260,27 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
     </tr>
     <tr>
       <th>HCR_beta_year</th>
-      <td><p>betaを年によって変える場合。tibble(year=2020:2024, beta=c(1.3,1.2,1.1,1,0.9))　のようにtibble形式で与える</p></td>
+      <td><p>betaを年によって変える場合。tibble(year=2020:2024, beta=c(1.3,1.2,1.1,1,0.9))　のようにtibble形式で与える。HCR_betaで設定されたbetaは上書きされる。</p></td>
+    </tr>
+    <tr>
+      <th>HCR_Blimit_year</th>
+      <td><p>Blimitを年によって変える場合。tibble(year=2020:2024, Blimit=c(1.3,1.2,1.1,1,0.9))　のようにtibble形式で与える。HCR_Blimitで設定されたBlimitは上書きされる。</p></td>
+    </tr>
+    <tr>
+      <th>HCR_Bban_year</th>
+      <td><p>Bbanを年によって変える場合。tibble(year=2020:2024, Bban=c(1.3,1.2,1.1,1,0.9))　のようにtibble形式で与える。HCR_Bbanで設定されたBbanは上書きされる。</p></td>
+    </tr>
+    <tr>
+      <th>HCR_TAC_reserve_rate</th>
+      <td><p>TACの取り残し率</p></td>
+    </tr>
+    <tr>
+      <th>HCR_TAC_carry_rate</th>
+      <td><p>TACの何％まで持ち越せるか</p></td>
+    </tr>
+    <tr>
+      <th>HCR_function_name</th>
+      <td><p>デフォルトは"HCR_default" ここを変更(関数名を文字列で与える。関数は別に定義しておく)すると自作のHCRが適用される。その場合、データのほうで定義されているbeta, Blimit, Bbanなど、同じ名前のものは有効</p></td>
     </tr>
     <tr>
       <th>Pope</th>
@@ -333,22 +331,20 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
       <td><p>res_SRにfit.SRregimeの返り値を入れた場合に指定する。将来予測で再生産関係のどのフェーズがおこるかを指定する。list(future_regime=将来のregimeの仮定。keyで指定された番号を入れる)</p></td>
     </tr>
     <tr>
-      <th>waa_fun</th>
-      <td><p>log(weight)~log(number)の回帰式から将来のweightを予測する</p></td>
-    </tr>
-    <tr>
-      <th>start_waafun_year_name</th>
-      <td><p>上記の設定がスタートする最初の年。それ以外の年は上で設定されたパラメータが使われる</p></td>
-    </tr>
-    <tr>
       <th>special_setting</th>
       <td><p>list形式で与えるmake_future_dataの返り値のdataと同じ名前の要素について、最後にデータをここで示されたarrayのシミュレーション1回めの値で上書きする。arrayのデータに対してのみ有効。</p></td>
     </tr>
-    <tr>
-      <th>HCR_Blimi</th>
-      <td><p>HCRのBlimi</p></td>
-    </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>以下の要素からなるリスト</p><dl>
+<dt><code>input</code></dt><dd><p>使用した引数のリスト。<code><a href='https://rdrr.io/r/base/do.call.html'>do.call(make_future_data, input)</a></code>で計算を再現できる</p></dd>
+<dt><code>data</code></dt><dd><p>future_vpa関数に渡すデータのセット</p></dd>
+<dt><code>data$naa_mat, data$caa_mat, data$waa_mat, data$waa_catch_mat, data$maa_mat, data$M_mat, data$faa_mat</code></dt><dd><p>年齢×年数（VPA期間年＋将来予測年）×シミュレーション回数の3次元データ。順に、年齢別年別シミュレーション別の資源尾数、漁獲尾数、体重、漁獲量計算用の体重、成熟率、自然死亡係数、漁獲死亡係数。このうち、資源尾数はVPA期間年までのみデータが入っていて、<code>future_vpa</code>を実行することによってここに推定値が入る。<code>faa_mat</code>についても、future_vpa実行時にHCRなどの適用の設定によって適宜書き換えられる。</p></dd>
+<dt><code>data$SR_mat</code></dt><dd><p></p></dd>
+
+</dl>
 
 
   </div>
@@ -366,7 +362,7 @@ future_vpaにインプットとして入れる将来予測の空のarrayを生�
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

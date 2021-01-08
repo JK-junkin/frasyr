@@ -79,12 +79,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -96,6 +90,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/Diagnostics-for-VPA.html">VPAモデル診断スクリプト</a>
+    </li>
+    <li>
+      <a href="../articles/fittingSR.html">fitSR関数を使った再生産関係の推定</a>
     </li>
     <li>
       <a href="../articles/vpa.html">VPA関数を使った資源量推定</a>
@@ -127,36 +124,41 @@
     <p>再生産関係を仮定しない管理基準値計算(SPR,YPR,F0.1,Fmax)のための関数</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ref.F</span>(
-  <span class='kw'>res</span>,
-  Fcurrent = <span class='kw'>NULL</span>,
-  waa = <span class='kw'>NULL</span>,
-  maa = <span class='kw'>NULL</span>,
-  M = <span class='kw'>NULL</span>,
-  waa.catch = <span class='kw'>NULL</span>,
-  M.year = <span class='kw'>NULL</span>,
-  waa.year = <span class='kw'>NULL</span>,
-  maa.year = <span class='kw'>NULL</span>,
-  rps.year = <span class='kw'>NULL</span>,
-  max.age = <span class='fl'>Inf</span>,
-  min.age = <span class='fl'>0</span>,
-  d = <span class='fl'>0.001</span>,
-  Fem.init = <span class='fl'>0.5</span>,
-  Fmax.init = <span class='fl'>1.5</span>,
-  F0.1.init = <span class='fl'>0.7</span>,
-  pSPR = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>10</span>, <span class='fl'>90</span>, by = <span class='fl'>10</span>),
-  iterlim = <span class='fl'>1000</span>,
-  plot = <span class='fl'>TRUE</span>,
-  Pope = <span class='kw'>NULL</span>,
-  F.range = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(from = <span class='fl'>0</span>, to = <span class='fl'>2</span>, length = <span class='fl'>101</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>ref.F</span><span class='op'>(</span>
+  res <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Fcurrent <span class='op'>=</span> <span class='cn'>NULL</span>,
+  waa <span class='op'>=</span> <span class='cn'>NULL</span>,
+  maa <span class='op'>=</span> <span class='cn'>NULL</span>,
+  M <span class='op'>=</span> <span class='cn'>NULL</span>,
+  waa.catch <span class='op'>=</span> <span class='cn'>NULL</span>,
+  M.year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  waa.year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  maa.year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  rps.year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  rps.vector <span class='op'>=</span> <span class='cn'>NULL</span>,
+  max.age <span class='op'>=</span> <span class='cn'>Inf</span>,
+  min.age <span class='op'>=</span> <span class='fl'>0</span>,
+  d <span class='op'>=</span> <span class='fl'>0.001</span>,
+  Fem.init <span class='op'>=</span> <span class='fl'>0.5</span>,
+  Fmax.init <span class='op'>=</span> <span class='fl'>1.5</span>,
+  F0.1.init <span class='op'>=</span> <span class='fl'>0.7</span>,
+  pSPR <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>90</span>, by <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
+  iterlim <span class='op'>=</span> <span class='fl'>1000</span>,
+  plot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  Pope <span class='op'>=</span> <span class='cn'>NULL</span>,
+  F.range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='fl'>0</span>, to <span class='op'>=</span> <span class='fl'>2</span>, length <span class='op'>=</span> <span class='fl'>101</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>res</th>
-      <td><p>VPAの出力結果</p></td>
+      <td><p>VPAの出力結果(NULLも可)。ここがNULLの場合（VPAの出力結果を与えない場合）でも、Fcurrent, waa, maa, M, waa.catch, max.age, min.age, Popeを別途指定することによって、管理基準値計算ができるようになる</p></td>
+    </tr>
+    <tr>
+      <th>Fcurrent</th>
+      <td><p>仮定する選択率．NULLの場合，res$Fc.at.ageが使われる</p></td>
     </tr>
     <tr>
       <th>waa</th>
@@ -191,12 +193,16 @@
       <td><p>Fmedの計算に使うRPSの年の範囲．NULLの場合，全範囲が用いられる</p></td>
     </tr>
     <tr>
+      <th>rps.vector</th>
+      <td><p>Fmedの計算に使うRPSのベクトル。rps.yearよりもこちらが優先される。</p></td>
+    </tr>
+    <tr>
       <th>max.age</th>
       <td><p>加入年齢を０歳としたときに、SPR計算で考慮される最大の年齢（年齢の数ではないことに注意, デフォルトはInf）。加入年齢が１歳以上のときは、SPR計算で考慮したい年齢-加入年齢を入力する、またはmin.ageの引数に加入年齢を設定する。</p></td>
     </tr>
     <tr>
       <th>min.age</th>
-      <td><p>加入年齢が0歳でないときに指定できる(デフォルトは0)</p></td>
+      <td><p>VPA結果を与える場合にはVPA結果から自動的にもってくるが、VPA結果を与えない場合、加入年齢を入力する</p></td>
     </tr>
     <tr>
       <th>d</th>
@@ -234,16 +240,26 @@
       <th>F.range</th>
       <td><p>YPR, SPR曲線を書くときのFの範囲（Fの最大値のスケール）、かつ、F%SPRを計算するときの初期値を決めるために利用される。F%SPRの推定がうまくいかない場合はこの範囲を調整してください。</p></td>
     </tr>
-    <tr>
-      <th>sel</th>
-      <td><p>仮定する選択率．NULLの場合，res$Fc.at.ageが使われる</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>F_SPRのF管理基準値の初期値は　与えられたFのもとでのSPR/目的のSPR　を初期値とするように調整されるので不要。</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>res_vpa</span><span class='op'>)</span>
+<span class='co'># VPAデータを使う場合</span>
+<span class='va'>res_refF1</span> <span class='op'>&lt;-</span> <span class='fu'>ref.F</span><span class='op'>(</span>res<span class='op'>=</span><span class='va'>res_vpa</span>,Fcurrent<span class='op'>=</span><span class='fu'>frasyr</span><span class='fu'>::</span><span class='fu'><a href='apply_year_colum.html'>apply_year_colum</a></span><span class='op'>(</span><span class='va'>res_vpa</span><span class='op'>$</span><span class='va'>faa</span>,<span class='fl'>2015</span><span class='op'>:</span><span class='fl'>2017</span><span class='op'>)</span>,
+                waa.year<span class='op'>=</span><span class='fl'>2015</span><span class='op'>:</span><span class='fl'>2017</span>,maa.year<span class='op'>=</span><span class='fl'>2015</span><span class='op'>:</span><span class='fl'>2017</span>,M.year<span class='op'>=</span><span class='fl'>2015</span><span class='op'>:</span><span class='fl'>2017</span><span class='op'>)</span>
+</div><div class='img'><img src='ref.F-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># 生物パラメータをデータとして与える場合</span>
+<span class='va'>res_refF2</span> <span class='op'>&lt;-</span> <span class='fu'>ref.F</span><span class='op'>(</span>res<span class='op'>=</span><span class='cn'>NULL</span>,Fcurrent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0.1</span>,<span class='fl'>5</span><span class='op'>)</span>,
+                   waa<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>100</span>,<span class='fl'>5</span><span class='op'>)</span>,maa<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span>,M<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0.3</span>,<span class='fl'>5</span><span class='op'>)</span>,waa.catch<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>100</span>,<span class='fl'>5</span><span class='op'>)</span>,
+                   rps.vector<span class='op'>=</span><span class='cn'>NULL</span>, <span class='co'># Fmedを計算したりする場合のRPSのベクトル.NULLでもOK</span>
+                   Pope<span class='op'>=</span><span class='cn'>TRUE</span>,min.age<span class='op'>=</span><span class='fl'>0</span>,pSPR<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>30</span>,<span class='fl'>40</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='ref.F-2.png' alt='' width='700' height='433' /></div><div class='input'>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -259,7 +275,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

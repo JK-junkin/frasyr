@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="モデル平均的な再生産関係を与える — average_SR_mat" />
-<meta property="og:description" content="モデル平均的な再生産関係を与える
-モデル平均的な再生産関係を与える" />
+<meta property="og:description" content="モデル平均的な再生産関係を与える" />
 
 
 
@@ -80,12 +79,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -97,6 +90,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/Diagnostics-for-VPA.html">VPAモデル診断スクリプト</a>
+    </li>
+    <li>
+      <a href="../articles/fittingSR.html">fitSR関数を使った再生産関係の推定</a>
     </li>
     <li>
       <a href="../articles/vpa.html">VPA関数を使った資源量推定</a>
@@ -126,36 +122,22 @@
 
     <div class="ref-description">
     <p>モデル平均的な再生産関係を与える</p>
-<p>モデル平均的な再生産関係を与える</p>
     </div>
 
-    <pre class="usage"><span class='fu'>average_SR_mat</span>(
-  <span class='kw'>res_vpa</span>,
-  <span class='kw'>res_SR_list</span>,
-  range_list = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>500</span>, <span class='fl'>501</span><span class='op'>:</span><span class='fl'>1000</span>),
-  <span class='kw'>SR_mat</span>,
-  <span class='kw'>seed_number</span>,
-  <span class='kw'>start_random_rec_year_name</span>,
-  <span class='kw'>recruit_age</span>,
-  resid_type = <span class='st'>"lognormal"</span>,
-  resample_year_range = <span class='fl'>0</span>,
-  recruit_intercept = <span class='kw'>recruit_intercept</span>,
-  bias_correction = <span class='fl'>TRUE</span>
-)
-
-<span class='fu'>average_SR_mat</span>(
-  <span class='kw'>res_vpa</span>,
-  <span class='kw'>res_SR_list</span>,
-  range_list = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>500</span>, <span class='fl'>501</span><span class='op'>:</span><span class='fl'>1000</span>),
-  <span class='kw'>SR_mat</span>,
-  <span class='kw'>seed_number</span>,
-  <span class='kw'>start_random_rec_year_name</span>,
-  <span class='kw'>recruit_age</span>,
-  resid_type = <span class='st'>"lognormal"</span>,
-  resample_year_range = <span class='fl'>0</span>,
-  recruit_intercept = <span class='kw'>recruit_intercept</span>,
-  bias_correction = <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>average_SR_mat</span><span class='op'>(</span>
+  <span class='va'>res_vpa</span>,
+  <span class='va'>res_SR_list</span>,
+  range_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>500</span>, <span class='fl'>501</span><span class='op'>:</span><span class='fl'>1000</span><span class='op'>)</span>,
+  <span class='va'>SR_mat</span>,
+  <span class='va'>seed_number</span>,
+  <span class='va'>start_random_rec_year_name</span>,
+  <span class='va'>recruit_age</span>,
+  resid_type <span class='op'>=</span> <span class='st'>"lognormal"</span>,
+  resample_year_range <span class='op'>=</span> <span class='fl'>0</span>,
+  regime_shift_option <span class='op'>=</span> <span class='cn'>NULL</span>,
+  recruit_intercept <span class='op'>=</span> <span class='fl'>0</span>,
+  bias_correction <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,10 +149,6 @@
     <tr>
       <th>res_SR_list</th>
       <td><p>再生産関係の推定結果のリスト</p></td>
-    </tr>
-    <tr>
-      <th>range_list</th>
-      <td></td>
     </tr>
     <tr>
       <th>SR_mat</th>
@@ -210,7 +188,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

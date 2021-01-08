@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="過去にさかのぼってブロックサンプリングをおこなう — sample_backward" />
-<meta property="og:description" content="過去にさかのぼってブロックサンプリングをおこなう
-過去にさかのぼってブロックサンプリングをおこなう" />
+<meta property="og:description" content="過去にさかのぼってブロックサンプリングをおこなう" />
 
 
 
@@ -80,12 +79,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -97,6 +90,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/Diagnostics-for-VPA.html">VPAモデル診断スクリプト</a>
+    </li>
+    <li>
+      <a href="../articles/fittingSR.html">fitSR関数を使った再生産関係の推定</a>
     </li>
     <li>
       <a href="../articles/vpa.html">VPA関数を使った資源量推定</a>
@@ -126,12 +122,9 @@
 
     <div class="ref-description">
     <p>過去にさかのぼってブロックサンプリングをおこなう</p>
-<p>過去にさかのぼってブロックサンプリングをおこなう</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sample_backward</span>(<span class='kw'>residual</span>, <span class='kw'>n</span>, <span class='kw'>duration</span>)
-
-<span class='fu'>sample_backward</span>(<span class='kw'>residual</span>, <span class='kw'>n</span>, <span class='kw'>duration</span>)</pre>
+    <pre class="usage"><span class='fu'>sample_backward</span><span class='op'>(</span><span class='va'>residual</span>, <span class='va'>n</span>, <span class='va'>duration</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,13 +146,11 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='kw'>res</span> <span class='op'>&lt;-</span> <span class='fu'>sample_backward</span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,each=<span class='fl'>5</span>), <span class='fl'>30</span>, <span class='fl'>5</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>res</span>,<span class='fl'>5</span>,<span class='fl'>6</span>),<span class='fl'>2</span>,<span class='kw'>min</span>)</div><div class='output co'>#&gt; [1] 5 5 5 3 2 1</div><div class='input'>
-
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='kw'>res</span> <span class='op'>&lt;-</span> <span class='fu'>sample_backward</span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,each=<span class='fl'>5</span>), <span class='fl'>30</span>, <span class='fl'>5</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>res</span>,<span class='fl'>5</span>,<span class='fl'>6</span>),<span class='fl'>2</span>,<span class='kw'>min</span>)</div><div class='output co'>#&gt; [1] 5 5 5 3 2 1</div><div class='input'></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>sample_backward</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,each<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span>, <span class='fl'>30</span>, <span class='fl'>5</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='va'>res</span>,<span class='fl'>5</span>,<span class='fl'>6</span><span class='op'>)</span>,<span class='fl'>2</span>,<span class='va'>min</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 5 5 5 3 2 1</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -175,7 +166,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
