@@ -162,3 +162,6 @@ make_future_data(
 }
 }
 }
+\description{
+future_vpaにインプットとして入れる将来予測の空のarrayを生成する関数
+}
