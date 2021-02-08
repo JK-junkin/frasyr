@@ -57,7 +57,10 @@
 #'
 #' }
 #' }
-#'
+#' @md
+#' - input: make_future_data関数に入れた引数がリスト形式で格納されている。
+#' - data: 次にfuture_vpaに入れるためのデータ・セット
+#' 
 #' @export
 #' @encoding UTF-8
 
@@ -1397,16 +1400,33 @@ format_to_old_future <- function(fout){
   fout_old$caa       <- fout$wcaa/fout_old$waa
   fout_old$multi     <- fout$multi
   fout_old$recruit   <- fout$SR_mat[,,"recruit"]
-  if(!is.null(fout$HCR_realized)){
-      fout_old$beta_gamma     <- fout$HCR_realized[,,"beta_gamma"]
-      fout_old$alpha     <- fout$HCR_realized[,,"beta_gamma"]
-      fout_old$Fratio     <- fout$HCR_realized[,,"Fratio"]
-  }
-  else{
-    fout_old$beta_gamma     <- fout$HCR_mat[,,"beta_gamma"]
-      fout_old$alpha     <- fout$HCR_mat[,,"beta_gamma"]
-      fout_old$Fratio     <- fout$HCR_mat[,,"Fratio"]
-      }
+# <<<<<<< HEAD
+#   if(!is.null(fout$HCR_realized)){
+#       fout_old$beta_gamma     <- fout$HCR_realized[,,"beta_gamma"]
+#       fout_old$alpha     <- fout$HCR_realized[,,"beta_gamma"]
+#       fout_old$Fratio     <- fout$HCR_realized[,,"Fratio"]
+#   }
+#   else{
+#     fout_old$beta_gamma     <- fout$HCR_mat[,,"beta_gamma"]
+#       fout_old$alpha     <- fout$HCR_mat[,,"beta_gamma"]
+#       fout_old$Fratio     <- fout$HCR_mat[,,"Fratio"]
+#       }
+# ||||||| 028cbb4 (revise utilities and help)
+#   if(!is.null(fout$HCR_realized)){
+#       fout_old$beta_gamma     <- fout$HCR_realized[,,"beta_gamma"]
+#       fout_old$alpha     <- fout$HCR_realized[,,"beta_gamma"]
+#       fout_old$Fratio     <- fout$HCR_realized[,,"Fratio"]
+#   }
+#   else{
+#       fout_old$beta_gamma     <- fout$HCR_mat[,,"beta_gamma"]
+#       fout_old$alpha     <- fout$HCR_mat[,,"beta_gamma"]
+#       fout_old$Fratio     <- fout$HCR_mat[,,"Fratio"]      
+#       }
+# =======
+  fout_old$beta_gamma     <- fout$HCR_realized[,,"beta_gamma"]
+  fout_old$alpha     <- fout$HCR_realized[,,"beta_gamma"]
+  fout_old$Fratio     <- fout$HCR_realized[,,"Fratio"]        
+# >>>>>>> parent of 028cbb4 (revise utilities and help)
   return(fout_old)
 }
 
