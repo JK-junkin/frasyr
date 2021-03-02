@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot SPR figure — plot_sprypr • frasyr</title>
+<title>再生産関係の推定結果からbootstrapを実行し、hの分布を計算する関数 — boot_steepness • frasyr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Plot SPR figure — plot_sprypr" />
-<meta property="og:description" content="Plot SPR figure" />
+<meta property="og:title" content="再生産関係の推定結果からbootstrapを実行し、hの分布を計算する関数 — boot_steepness" />
+<meta property="og:description" content="再生産関係の推定結果からbootstrapを実行し、hの分布を計算する関数" />
 
 
 
@@ -123,27 +123,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot SPR figure</h1>
+    <h1>再生産関係の推定結果からbootstrapを実行し、hの分布を計算する関数</h1>
     
-    <div class="hidden name"><code>plot_sprypr.Rd</code></div>
+    <div class="hidden name"><code>boot_steepness.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot SPR figure</p>
+    <p>再生産関係の推定結果からbootstrapを実行し、hの分布を計算する関数</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_sprypr</span><span class='op'>(</span><span class='va'>result_vpa</span>, <span class='va'>type</span>, years <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>boot_steepness</span><span class='op'>(</span><span class='va'>res_SR</span>, <span class='va'>M</span>, <span class='va'>waa</span>, <span class='va'>maa</span>, n <span class='op'>=</span> <span class='fl'>100</span>, plus_group <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>result_vpa</th>
-      <td><p>Obejct returned from <code><a href='vpa.html'>vpa()</a></code></p></td>
+      <th>res_SR</th>
+      <td><p>fit.SRまたはfit.SRregime、モデル平均の結果</p></td>
     </tr>
     <tr>
-      <th>years</th>
-      <td><p>全ての年をプロットしない場合、<code>years=1985:2011</code>のようにプロットする年を指定する</p></td>
+      <th>M</th>
+      <td><p>年齢別自然死亡係数 (ベクトルで与えるか、年齢共通の場合<code>M=0.4</code>のようにしてもよい)</p></td>
+    </tr>
+    <tr>
+      <th>waa</th>
+      <td><p>（親魚量の）年齢別体重</p></td>
+    </tr>
+    <tr>
+      <th>maa</th>
+      <td><p>年齢別親魚量</p></td>
+    </tr>
+    <tr>
+      <th>plus_group</th>
+      <td><p>最高齢がプラスグループかどうか</p></td>
     </tr>
     </table>
 

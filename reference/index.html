@@ -44,6 +44,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -55,9 +57,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -218,9 +226,21 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="boot_steepness.html">boot_steepness()</a></code> </p>
+        </td>
+        <td><p>再生産関係の推定結果からbootstrapを実行し、hの分布を計算する関数</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="caa.est.mat.html">caa.est.mat()</a></code> </p>
         </td>
         <td><p>年齢別生物パラメータとFと漁獲量を与えると与えた漁獲量と一致するFへの乗数を返す</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="caa.est.mat_wrong.html">caa.est.mat_wrong()</a></code> </p>
+        </td>
+        <td><p>年齢別生物パラメータとFと漁獲量を与えると与えた漁獲量と一致するFへの乗数を返す (optimを使わないでやろうとしたけどだめだったやつ）</p></td>
       </tr><tr>
         
         <td>
@@ -365,6 +385,18 @@
           <p><code><a href="derive_RP_value.html">derive_RP_value()</a></code> </p>
         </td>
         <td><p>管理基準値表から目的の管理基準値を取り出す関数</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="derive_biopar.html">derive_biopar()</a></code> </p>
+        </td>
+        <td><p>将来予測やVPAの結果から生物パラメータをとりだす</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="detect_plus_group.html">detect_plus_group()</a></code> </p>
+        </td>
+        <td><p>与えられた個体群動態でプラスグループが考慮されているかどうか</p></td>
       </tr><tr>
         
         <td>
@@ -626,6 +658,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="plot_SR_AReffect.html">plot_SR_AReffect()</a></code> </p>
+        </td>
+        <td><p>ARの効果を差し引いて再生産関係をプロットする</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="plot_SRdata.html">plot_SRdata()</a></code> </p>
         </td>
         <td><p>SRdataをプロットする</p></td>
@@ -659,6 +697,12 @@
           <p><code><a href="plot_sprypr.html">plot_sprypr()</a></code> </p>
         </td>
         <td><p>Plot SPR figure</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_summary_performance.html">plot_summary_performance()</a></code> </p>
+        </td>
+        <td><p>kobeII tableの結果をさらに要約してグラフ化する</p></td>
       </tr><tr>
         
         <td>
@@ -831,11 +875,11 @@ Pull data frame from list</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Momoko Ichinokawa, Akira Hayashi, Mitsuyo Miyagawa, Shin Fukui, Kohei Hamabe, Shota Nishijima, Hiroshi Okamura.</p>
+  <p><p>Developed by Momoko Ichinokawa, Akira Hayashi, Mitsuyo Miyagawa, Shin Fukui, Kohei Hamabe, Shota Nishijima, Hiroshi Okamura.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -843,6 +887,8 @@ Pull data frame from list</p></td>
 
   
 
+
+  
 
   </body>
 </html>

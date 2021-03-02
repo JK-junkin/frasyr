@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -75,21 +77,17 @@
 <div id="frasyr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#frasyr" class="anchor"></a>frasyr</h1></div>
-
-<ul>
-<li>Fisheries Research Agency (FRA) provides the method for calculating sustainable yield (SY) with R</li>
-<li>VPAを用いた資源量推定と，その推定結果をもとにしてMSYを基礎とした目標管理基準値を計算するためのRのパッケージです．開発途中のものであること，ご承知おきください．</li>
-</ul>
+<p><a href="https://travis-ci.com/ichimomo/frasyr" class="external-link"><img src="https://travis-ci.com/ichimomo/frasyr.svg?branch=dev" alt="Travis build status"></a> <a href="https://codecov.io/gh/ichimomo/frasyr?branch=dev" class="external-link"><img src="https://codecov.io/gh/ichimomo/frasyr/branch/dev/graph/badge.svg" alt="Codecov test coverage"></a> - Fisheries Research Agency (FRA) provides the method for calculating sustainable yield (SY) with R - VPAを用いた資源量推定と，その推定結果をもとにしてMSYを基礎とした目標管理基準値を計算するためのRのパッケージです．開発途中のものであること，ご承知おきください．</p>
 </div>
 <div id="使い方など" class="section level1">
 <h1 class="hasAnchor">
 <a href="#%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%AA%E3%81%A9" class="anchor"></a>使い方など</h1>
-<p><a href="https://ichimomo.github.io/main/" class="uri">https://ichimomo.github.io/main/</a> に一括した情報へのリンクがあります</p>
+<p>https://ichimomo.github.io/main/ に一括した情報へのリンクがあります</p>
 </div>
 <div id="インストール方法" class="section level1">
 <h1 class="hasAnchor">
 <a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95" class="anchor"></a>インストール方法</h1>
-<pre><code><a href="https://rdrr.io/r/utils/install.packages.html"># devtoolsをインストールしていない人はインストールする
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link"># devtoolsをインストールしていない人はインストールする
 install.packages("devtools")
 
 # マスター版（最新・安定版）をインストールする場合
@@ -137,11 +135,11 @@ library(frasyr)
 <h1 class="hasAnchor">
 <a href="#%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB" class="anchor"></a>マニュアル</h1>
 <ul>
-<li>VPAによる資源量推定　<a href="https://ichimomo.github.io/frasyr/articles/vpa.html">vignette</a>
+<li>VPAによる資源量推定　<a href="https://ichimomo.github.io/frasyr/articles/vpa.html" class="external-link">vignette</a>
 </li>
-<li>VPAモデル診断スクリプト　<a href="https://ichimomo.github.io/frasyr/articles/Diagnostics-for-VPA.html">vignette</a>
+<li>VPAモデル診断スクリプト　<a href="https://ichimomo.github.io/frasyr/articles/Diagnostics-for-VPA.html" class="external-link">vignette</a>
 </li>
-<li>fitSR関数による再生産関係推定　<a href="https://ichimomo.github.io/frasyr/articles/fittingSR.html">vignette</a>
+<li>fitSR関数による再生産関係推定　<a href="https://ichimomo.github.io/frasyr/articles/fittingSR.html" class="external-link">vignette</a>
 </li>
 </ul>
 <p>これらはRコマンドで以下のようにしても見れます。</p>
@@ -151,29 +149,31 @@ vignette(package="frasyr") # 利用可能なvignetteを調べる
 vignette("vpa",package="frasyr") # VPAの実施のしかた
 vignette("Diagnostics-for-VPA",package="frasyr") # VPAのモデル診断</code></pre>
 <ul>
-<li>再生産関係のモデル診断 <a href="https://github.com/ichimomo/frasyr/wiki/Diagnostics-for-Stock-Recruitment-Relationships">wiki</a>
+<li>再生産関係のモデル診断 <a href="https://github.com/ichimomo/frasyr/wiki/Diagnostics-for-Stock-Recruitment-Relationships" class="external-link">wiki</a>
 </li>
-<li>将来予測関数の使い方：<a href="https://github.com/ichimomo/frasyr/wiki/future_new">wiki</a>
+<li>将来予測関数の使い方：<a href="https://github.com/ichimomo/frasyr/wiki/future_new" class="external-link">wiki</a>
 </li>
 </ul>
 <!--
 - 新ルールのもとでの将来予測計算 https://ichimomo.github.io/frasyr/doc/future.html
 - 管理基準値の計算 https://ichimomo.github.io/frasyr/doc/estMSY.html
 --><p>=======</p>
-<p>frasyr_tool群の全体説明は<a href="https://ichimomo.github.io/main/">こちら</a></p>
+<p>frasyr_tool群の全体説明は<a href="https://ichimomo.github.io/main/" class="external-link">こちら</a></p>
 </div>
 
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>Apache Licence 2.0</li>
 </ul>
 </div>
+
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Momoko Ichinokawa <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Akira Hayashi <br><small class="roles"> Author </small>  </li>
@@ -185,23 +185,20 @@ vignette("Diagnostics-for-VPA",package="frasyr") # VPAのモデル診断</code><
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.com/ichimomo/frasyr"><img src="https://travis-ci.com/ichimomo/frasyr.svg?branch=dev" alt="Travis build status"></a></li>
-<li><a href="https://codecov.io/gh/ichimomo/frasyr?branch=dev"><img src="https://codecov.io/gh/ichimomo/frasyr/branch/dev/graph/badge.svg" alt="Codecov test coverage"></a></li>
-</ul>
-</div>
-</div>
+
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Momoko Ichinokawa, Akira Hayashi, Mitsuyo Miyagawa, Shin Fukui, Kohei Hamabe, Shota Nishijima, Hiroshi Okamura.</p>
+  <p></p>
+<p>Developed by Momoko Ichinokawa, Akira Hayashi, Mitsuyo Miyagawa, Shin Fukui, Kohei Hamabe, Shota Nishijima, Hiroshi Okamura.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
@@ -209,6 +206,8 @@ vignette("Diagnostics-for-VPA",package="frasyr") # VPAのモデル診断</code><
 
   
 
+
+  
 
   </body>
 </html>

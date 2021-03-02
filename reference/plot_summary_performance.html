@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot SPR figure — plot_sprypr • frasyr</title>
+<title>kobeII tableの結果をさらに要約してグラフ化する — plot_summary_performance • frasyr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Plot SPR figure — plot_sprypr" />
-<meta property="og:description" content="Plot SPR figure" />
+<meta property="og:title" content="kobeII tableの結果をさらに要約してグラフ化する — plot_summary_performance" />
+<meta property="og:description" content="漁獲量・親魚量・リスクの３つに分類する" />
 
 
 
@@ -123,29 +123,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot SPR figure</h1>
+    <h1>kobeII tableの結果をさらに要約してグラフ化する</h1>
     
-    <div class="hidden name"><code>plot_sprypr.Rd</code></div>
+    <div class="hidden name"><code>plot_summary_performance.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot SPR figure</p>
+    <p>漁獲量・親魚量・リスクの３つに分類する</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_sprypr</span><span class='op'>(</span><span class='va'>result_vpa</span>, <span class='va'>type</span>, years <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>plot_summary_performance</span><span class='op'>(</span>
+  <span class='va'>folder_names</span>,
+  <span class='va'>scenario_names</span>,
+  kobe_object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>plot_year_range</span>,
+  <span class='va'>beta_select</span>,
+  <span class='va'>res_MSY</span>,
+  catch_3terms <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>2022</span><span class='op'>:</span><span class='fl'>2024</span>, <span class='fl'>2025</span><span class='op'>:</span><span class='fl'>2027</span>, <span class='fl'>2028</span><span class='op'>:</span><span class='fl'>2030</span><span class='op'>)</span>,
+  ssb_3terms <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>2023</span><span class='op'>:</span><span class='fl'>2025</span>, <span class='fl'>2026</span><span class='op'>:</span><span class='fl'>2028</span>, <span class='fl'>2029</span><span class='op'>:</span><span class='fl'>2031</span><span class='op'>)</span>,
+  risk.pickup <span class='op'>=</span> <span class='cn'>NULL</span>,
+  circle_size <span class='op'>=</span> <span class='fl'>60</span>,
+  font_size <span class='op'>=</span> <span class='fl'>25</span>,
+  sort_category <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>result_vpa</th>
-      <td><p>Obejct returned from <code><a href='vpa.html'>vpa()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>years</th>
-      <td><p>全ての年をプロットしない場合、<code>years=1985:2011</code>のようにプロットする年を指定する</p></td>
-    </tr>
-    </table>
 
 
   </div>

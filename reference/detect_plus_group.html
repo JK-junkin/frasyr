@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot SPR figure — plot_sprypr • frasyr</title>
+<title>与えられた個体群動態でプラスグループが考慮されているかどうか — detect_plus_group • frasyr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Plot SPR figure — plot_sprypr" />
-<meta property="og:description" content="Plot SPR figure" />
+<meta property="og:title" content="与えられた個体群動態でプラスグループが考慮されているかどうか — detect_plus_group" />
+<meta property="og:description" content="与えられた個体群動態でプラスグループが考慮されているかどうか" />
 
 
 
@@ -123,27 +123,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot SPR figure</h1>
+    <h1>与えられた個体群動態でプラスグループが考慮されているかどうか</h1>
     
-    <div class="hidden name"><code>plot_sprypr.Rd</code></div>
+    <div class="hidden name"><code>detect_plus_group.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot SPR figure</p>
+    <p>与えられた個体群動態でプラスグループが考慮されているかどうか</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_sprypr</span><span class='op'>(</span><span class='va'>result_vpa</span>, <span class='va'>type</span>, years <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>detect_plus_group</span><span class='op'>(</span><span class='va'>dres</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>result_vpa</th>
-      <td><p>Obejct returned from <code><a href='vpa.html'>vpa()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>years</th>
-      <td><p>全ての年をプロットしない場合、<code>years=1985:2011</code>のようにプロットする年を指定する</p></td>
+      <th>dres</th>
+      <td><p>VPAの結果</p></td>
     </tr>
     </table>
 
