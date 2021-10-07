@@ -2027,20 +2027,33 @@ calc_future_perSPR <- function(fout=NULL,
   # 緊急措置。本来ならどこをプラスグループとして与えるかを引数として与えないといけない
   # 現状で、すべてのカラムがゼロ＝資源計算では考慮されていないセルとして認識されている
   allsumpars <- waa.tmp+waa.catch.tmp+maa.tmp+M.tmp
+  cat("allsumpars", allsumpars, "\n")
+  cat("added pars", waa.tmp, waa.catch.tmp, maa.tmp, M.tmp, "\n")
+  # [1] NaN NaN NaN NaN
   waa.tmp <- waa.tmp[allsumpars!=0]
   waa.catch.tmp <- waa.catch.tmp[allsumpars!=0]
   maa.tmp <- maa.tmp[allsumpars!=0]
   M.tmp <- M.tmp[ allsumpars!=0]
+#   cat("Fvec", Fvector, "\n") # 2021/10/07 14:15(木) が numeric(0)
   Fvector <- Fvector %>%  as.numeric()
-  Fvector <- Fvector[allsumpars!=0 & !is.na(allsumpars)]
+#   cat("Fvec", Fvector, "\n") # 2021/10/07 14:15(木) が numeric(0)
+
+  ## 原因はここ. HCRのFvectorがこの処理によりnumeric(0)になる. 2021/10/07 14:24(木)
+  ## 緊急的に comment outしておく
+#   Fvector <- Fvector[allsumpars!=0 & !is.na(allsumpars)]
+#   cat("Fvec", Fvector, "\n") # 2021/10/07 14:15(木) が numeric(0)
 
   # SPRを計算
   if(!is.null(SPRtarget)) SPRtarget_tmp <- SPRtarget/SPR_multi*100 else SPRtarget_tmp <- NULL
-  tmp <- calc_Fratio(Fvector,waa=waa.tmp,maa=maa.tmp,M=M.tmp,SPRtarget=SPRtarget_tmp,
+#   cat("Fvec", Fvector, "\n") # 2021/10/07 14:15(木) が numeric(0)
+  tmp <- calc_Fratio(faa=Fvector,waa=waa.tmp,maa=maa.tmp,M=M.tmp,SPRtarget=SPRtarget_tmp,
                      waa.catch=waa.catch.tmp,Pope=is_pope,
                      return_SPR=TRUE,plus_group=plus_group)
-  if(is.null(SPRtarget))  return(ifelse(length(tmp)==1,1*SPR_multi,tmp$SPR_original/100*SPR_multi))
-  else{
+  if(is.null(SPRtarget)) {
+    return(ifelse(length(tmp)==1,1*SPR_multi,tmp$SPR_original/100*SPR_multi))  
+  } else {
+    ## ここでエラー. 2021/10/07 10:41(木)
+#     cat(tmp, "\n") # 2021/10/07 14:10(木)
     tmp$SPR_original <- tmp$SPR_original/100*SPR_multi
     tmp$SPR_est <- tmp$SPR_est/100*SPR_multi
     tmp$SPR_target <- tmp$SPR_target/100*SPR_multi
@@ -2372,9 +2385,10 @@ calc_Fratio <- function(faa, waa, maa, M, SPRtarget=30, waa.catch=NULL,Pope=TRUE
     sum(((SPR_tmp/SPR0*100)-SPRtarget)^2)
   }
 
-  if(max(faa, na.rm=T)<exp(-7)){ return(0) }
-
-  else{
+#   cat("faa", faa, "\n") # 2021/10/07 14:09(木)
+  if(max(faa, na.rm = TRUE) < exp(-7)) { 
+      return(0) 
+  } else {
     tmp <- !is.na(faa)
     SPR0 <- calc.rel.abund2_(faa,0)$spr %>% sum()
     SPR_original <- calc.rel.abund2_(faa,1)$spr %>% sum()
@@ -2385,16 +2399,14 @@ calc_Fratio <- function(faa, waa, maa, M, SPRtarget=30, waa.catch=NULL,Pope=TRUE
         SPR_est <- SPR_est/SPR0 * 100
 #        if(abs(SPR_est-SPRtarget)>0.01) {return(NA)}
         Fratio <- 1/exp(opt_res$minimum)
-    }
-    else{
+    } else {
       SPR_est <- SPR_original
       Fratio <- 1
     }
 
     if(isTRUE(return_SPR)){
         list(Fratio=Fratio, SPR_est=SPR_est, SPR_target=SPRtarget, SPR_original=SPR_original)
-    }
-    else{
+    } else {
         return(Fratio)
     }
   }
@@ -2820,6 +2832,7 @@ convert_Fvector <- function(res_vpa=NULL,
                                    biopar = faa_bio)
   cat("%SPR in faa=", faa_perSPR,"\n")
   # saa_vectorがfaa_vectorに相当する%SPRになるためには何倍にしないといけないか
+  # ここでエラー 2021/10/07 13:59(木)
   saa_multiplier <- calc_future_perSPR(fout=res_future,
                                        res_vpa=res_vpa,
                                        Fvector=saa_vector,
