@@ -1932,7 +1932,9 @@ retro.est <- function(res,n=5,stat="mean",init.est=FALSE, b.fix=TRUE,
 
      Res[[i]] <- res1
 
-     if ((max(abs(res1$gradient)) < 10^(-3) & !isTRUE(res1$input$ADMB)) | (max(abs(res1$gradient)) > 0 & max(abs(res1$gradient)) < 10^(-3) & isTRUE(res1$input$ADMB)) | (is.na(max(abs(res1$gradient))) & res1$input$optimizer=="nlminb")){
+     if ((!is.na(res1$gradient) & max(abs(res1$gradient)) < 10^(-3) & !isTRUE(res1$input$ADMB)) |
+         (!is.na(res1$gradient) & max(abs(res1$gradient)) > 0 & max(abs(res1$gradient)) < 10^(-3) & isTRUE(res1$input$ADMB)) |
+         (is.na(max(abs(res1$gradient))) & res1$input$optimizer=="nlminb")){
        obj.n <- c(obj.n, (sum(res1$naa[,Y])-sum(res$naa[,Y]))/sum(res$naa[,Y]))
        obj.b <- c(obj.b, (sum(res1$baa[,Y])-sum(res$baa[,Y]))/sum(res$baa[,Y]))
        if (ssb.forecast && res.c$input$last.catch.zero) {
