@@ -2623,6 +2623,8 @@ corSR = function(resSR) {
 #' @param waa （親魚量の）年齢別体重
 #' @param maa 年齢別親魚量
 #' @param plus_group 最高齢がプラスグループかどうか
+#' @param faa 年齢別漁獲係数, Default: NULL
+#' @param Pope Popeの近似式を使うかどうか, Default: TRUE
 #' @return 以下の要素からなるデータフレーム
 #' \describe{
 #' \item{\code{SPR0}}{F=0のときのSPR(この逆数がreplacement lineの傾き)}
@@ -2647,6 +2649,12 @@ corSR = function(resSR) {
 #' Res_h
 #' }
 #' @encoding UTF-8
+#' @seealso 
+#'  \code{\link[dplyr]{select}},\code{\link[dplyr]{mutate}}
+#'  \code{\link[purrr]{map}}
+#' @rdname calc_steepness
+#' @importFrom dplyr select mutate
+#' @importFrom purrr map_dbl
 #' @export
 calc_steepness = function(SR="HS",rec_pars,M,waa,maa,plus_group=TRUE,faa = NULL, Pope=TRUE) {
   if (length(M)==1) {

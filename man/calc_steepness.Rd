@@ -28,6 +28,10 @@ calc_steepness(
 \item{maa}{年齢別親魚量}
 
 \item{plus_group}{最高齢がプラスグループかどうか}
+
+\item{faa}{年齢別漁獲係数, Default: NULL}
+
+\item{Pope}{Popeの近似式を使うかどうか, Default: TRUE}
 }
 \value{
 
@@ -50,4 +54,8 @@ maa = res_vpa$input$dat$maa[,year]
 Res_h = calc_steepness(SR="HS",rec_pars=rec_pars,M=M,waa=waa,maa=maa,plus_group=TRUE)
 Res_h
 }
+}
+\seealso{
+\code{\link[dplyr]{select}},\code{\link[dplyr]{mutate}}
+ \code{\link[purrr]{map}}
 }
