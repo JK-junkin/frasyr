@@ -199,9 +199,6 @@
     <loc>/reference/fit.SR.html</loc>
   </url>
   <url>
-    <loc>/reference/fit.SR_pen.html</loc>
-  </url>
-  <url>
     <loc>/reference/fit.SR_tol.html</loc>
   </url>
   <url>
@@ -244,9 +241,6 @@
     <loc>/reference/jackknife.SR.html</loc>
   </url>
   <url>
-    <loc>/reference/keta.html</loc>
-  </url>
-  <url>
     <loc>/reference/load_folder.html</loc>
   </url>
   <url>
@@ -275,9 +269,6 @@
   </url>
   <url>
     <loc>/reference/make_stock_table.html</loc>
-  </url>
-  <url>
-    <loc>/reference/make_stock_table2.html</loc>
   </url>
   <url>
     <loc>/reference/make_table.html</loc>
@@ -379,9 +370,6 @@
     <loc>/reference/source_lines.html</loc>
   </url>
   <url>
-    <loc>/reference/specify.Mesnil.gamma.html</loc>
-  </url>
-  <url>
     <loc>/reference/summary_kobe_table.html</loc>
   </url>
   <url>
@@ -416,8 +404,5 @@
   </url>
   <url>
     <loc>/reference/vpa.html</loc>
-  </url>
-  <url>
-    <loc>/reference/yrs_used.html</loc>
   </url>
 </urlset>
