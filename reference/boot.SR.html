@@ -59,18 +59,55 @@
     <p>①残差のパラメトリックブートストラップ、②残差のノンパラメトリックブートストラップ（リサンプリング）、③データのブートストラップ（リサンプリング）が行える</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">boot.SR</span><span class="op">(</span><span class="va">Res</span>, method <span class="op">=</span> <span class="st">"p"</span>, n <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">boot.SR</span><span class="op">(</span><span class="va">Res</span>, method <span class="op">=</span> <span class="st">"p"</span>, n <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Res</dt>
 <dd><p><code>fit.SR</code>か<code>fit.SRregime</code>のオブジェクト</p></dd>
 <dt>method</dt>
-<dd><p>パラメトリック ("p") かノンパラメトリック ("n")</p></dd>
+<dd><p>残差ブートストラップ(パラメトリック ("p") かノンパラメトリック ("n")) もしくはデータブートストラップ("d")</p></dd>
+<dt>n</dt>
+<dd><p>ブートストラップの回数（例では100回だが500回あるいは1000回を推奨）</p></dd>
 </dl></div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>残差のパラメトリックブートストラップはmethod="p"で実行可能で、自己相関なしの場合、fit.SRのpars$sdを標準偏差とする正規分布からランダムに乱数を発生させ、予測値からのずれを加えて加入量のブートストラップデータを生成し、再推定している</p>
+<p>自己相関ありの場合、fit.SRのpars$sdを1から自己相関係数rho^2を引き2乗根をとって除したもの(pars$sd/sqrt(1-pars$rho^2))を標準偏差とする正規分布からランダムに乱数（epsilon_t）を発生させ、 毎年の残差(resid_t) を resid_(t+1) = rho × resid_t + epsilon_t とし、resid_tを予測値に加えたブートストラップデータを生成し、再推定している</p>
+<p>自己相関ありの場合はノンパラメトリックブートストラップは使わずにパラメトリックブートストラップを用いること</p>
+<p>残差のノンパラメトリックブートストラップはmethod="n"で実行可能で、残差の確率分布を仮定せず、残差を重複ありでリサンプリングして、加入量のブートストラップデータを生成する</p>
+<p>データのブートストラップはmethod="d"で実行可能で、データを重複ありでリサンプリングしたデータを使用して、再生産関係の再推定を行う</p>
+<p>親魚量データもリサンプリングにより変化するため、親魚量の不確実性も考慮されることになることから、親魚量データに偏りがあったり、データ数が少なかったり、あるデータ点に推定値が大きく依存している場合はバイアスや不確実性が大きくなりやすい</p>
+<p>図のプロットにはbootSR.plotを使用する</p>
+<p>自己相関を推定していない場合は最後のrhoの図は表示されない</p>
+<p>fit.SRの引数にbio_parを入れてスティープネスを計算した場合、SB0、R0、B0、hの図もされる</p>
+<p>図の出力bootSR.plotのオプションoutput=Tとすると、各パラメータのヒストグラムが出力される</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">res_vpa</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">SRdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="get.SRdata.html">get.SRdata</a></span><span class="op">(</span><span class="va">res_vpa</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">bio_par</span> <span class="op">&lt;-</span> <span class="fu"><a href="derive_biopar.html">derive_biopar</a></span><span class="op">(</span>res_obj<span class="op">=</span><span class="va">res_vpa</span>,derive_year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">resL1outer</span> <span class="op">=</span> <span class="fu"><a href="fit.SR.html">fit.SR</a></span><span class="op">(</span><span class="va">SRdata</span>, SR <span class="op">=</span> <span class="st">"HS"</span>, method <span class="op">=</span> <span class="st">"L1"</span>, out.AR <span class="op">=</span> <span class="cn">TRUE</span>, AR <span class="op">=</span> <span class="fl">1</span>,bio_par<span class="op">=</span><span class="va">bio_par</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># example if parametric bootstrap</span></span>
+<span class="r-in"><span class="va">boot.res1</span> <span class="op">=</span> <span class="fu">boot.SR</span><span class="op">(</span><span class="va">resL1outer</span>, n <span class="op">=</span> <span class="fl">100</span>, method <span class="op">=</span> <span class="st">"p"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="bootSR.plot.html">bootSR.plot</a></span><span class="op">(</span><span class="va">boot.res1</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># example if non-parametric bootstrap</span></span>
+<span class="r-in"><span class="va">boot.res2</span> <span class="op">=</span> <span class="fu">boot.SR</span><span class="op">(</span><span class="va">resL1outer</span>, n <span class="op">=</span> <span class="fl">100</span>, method <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="bootSR.plot.html">bootSR.plot</a></span><span class="op">(</span><span class="va">boot.res2</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">#' # example if data bootstrap (optional method)</span></span>
+<span class="r-in"><span class="va">boot.res3</span> <span class="op">=</span> <span class="fu">boot.SR</span><span class="op">(</span><span class="va">resL1outer</span>, n <span class="op">=</span> <span class="fl">100</span>, method <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="bootSR.plot.html">bootSR.plot</a></span><span class="op">(</span><span class="va">boot.res3</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">}</span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
@@ -83,7 +120,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer></div>
