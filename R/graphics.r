@@ -1413,7 +1413,6 @@ plot_kobe_gg <- plot_kobe <- function(vpares,refs_base,roll_mean=1,
           mutate(year_group = ifelse(year >= diff.year[i], year_group+1, year_group))
       }
     }
-  }
 
   if(is.null(labeling.year)){
     years <- unique(UBdata$year)
