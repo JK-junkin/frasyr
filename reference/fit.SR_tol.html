@@ -60,17 +60,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fit.SR_tol</span><span class="op">(</span><span class="va">...</span>, n_check <span class="op">=</span> <span class="fl">100</span>, is_regime <span class="op">=</span> <span class="cn">FALSE</span>, seed <span class="op">=</span> <span class="fl">12345</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fit.SR_tol</span><span class="op">(</span>
+  <span class="va">...</span>,
+  n_check <span class="op">=</span> <span class="fl">100</span>,
+  is_regime <span class="op">=</span> <span class="cn">FALSE</span>,
+  seed <span class="op">=</span> <span class="fl">12345</span>,
+  fun_when_check5_replace <span class="op">=</span> <span class="va">median</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>...</dt>
 <dd><p>fit.SRへの引数</p></dd>
+
+
 <dt>n_check</dt>
 <dd><p>check.SRfitに渡す引数n（初期値を変えて計算を繰り返す回数）</p></dd>
+
+
 <dt>seed</dt>
 <dd><p>check.SRfitに渡す引数seed。初期値を変えるときに使う乱数。toolのスクリプトではずっと12345を利用していた関係で、デフォルトの引数は12345にしている。</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -89,7 +100,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.9000.</p>
 </div>
 
       </footer></div>
