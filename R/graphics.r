@@ -103,7 +103,8 @@ plot_vpa <- function(vpalist,
   if(is.null(vpatibble)){
     if(isTRUE("naa" %in% names(vpalist))) vpalist <- list(vpalist)
     vpadata <- vpalist %>% purrr::map_dfr(convert_vpa_tibble ,.id="id") %>%
-      mutate(age=factor(age))
+      mutate(age=factor(age),
+             id = forcats::fct_inorder(id))
   }
   else{
     vpadata <- vpatibble %>%
