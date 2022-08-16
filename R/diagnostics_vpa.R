@@ -797,8 +797,13 @@ plot_residual_vpa <- function(res, index_name = NULL, plot_smooth = FALSE, plot_
   for(i in 1:length(Lab_tmp)){
     tmp_data <- d_tidy[d_tidy$Index_Label == Lab_tmp[i],]
     predIndex_g3[[i]] <- with(tmp_data,
-                              seq(#min(tmp_data$pred, na.rm = T),
-                                0, max(tmp_data$pred, na.rm = T), length=100))
+                              c(seq(0, quantile(tmp_data$pred, 0.55), length = 751),
+                                seq(quantile(tmp_data$pred, 0.50),
+                                    max(tmp_data$pred, na.rm = TRUE), length = 250))) %>%
+    sort()
+#     predIndex_g3[[i]] <- with(tmp_data,
+#                               seq(#min(tmp_data$pred, na.rm = T),
+#                                 0, max(tmp_data$pred, na.rm = TRUE), length = 1001))
     predabund_g3[[i]] <- (as.numeric(predIndex_g3[[i]])/res$q[i])^(1/res$b[i])
     # NOTE: ここにbugがあった. use.index に未対応だった. JK-junkin 2022/08/16
     tmp <- str_split(res$input$abund[res$input$use.index][i], "") %>% unlist()
@@ -809,13 +814,16 @@ plot_residual_vpa <- function(res, index_name = NULL, plot_smooth = FALSE, plot_
   }
   # 横軸に資源量（指数に合わせてSSBやNだったり）、縦軸に予測CPUEを
   # 線が描けるように、横軸100刻みほどでデータがある
-  ab_Index_tmp <- data.frame(Index_Label = rep(unique(d_tidy$Index_Label), each = 100),
+  ab_Index_tmp <- data.frame(Index_Label = rep(unique(d_tidy$Index_Label), each = 1001),
                              X = unlist(predabund_g3),
                              Y = unlist(predIndex_g3))
 
   g3 <- ggplot(d_tidy) +
     geom_point(aes(x=predabund, y=obs, color = Index_Label), size = 2) +
-    geom_line(aes(x = X, y = Y), data = ab_Index_tmp, color = "red") +
+    geom_line(aes(x = X, y = Y), data = ab_Index_tmp, color = "black", linetype = "31") +
+    geom_label_npc(data = . %>% dplyr::distinct(Index_Label, b),
+                   aes(label = sprintf("b = %.3f", unique(b)), npcx = 0.01, npcy = 0.99), 
+                   vjust = 1, hjust = 0) +
     facet_wrap(~Index_Label, scales = "free") +
     xlab("Abundance / Biomass / SSB") +
     ylab("Abundance index") +
