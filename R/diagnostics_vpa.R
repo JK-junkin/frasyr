@@ -619,6 +619,9 @@ plot_residual_vpa <- function(res, index_name = NULL, plot_smooth = FALSE, plot_
   # x軸の範囲
   if(is.numeric(plot_year)) xlim_year <- c(min(plot_year), max(plot_year)) else xlim_year <- c(min(as.numeric(colnames(res_vpa_estb$naa))), max(as.numeric(colnames(res_vpa_estb$naa))))
 
+  # NOTE: JK-junkin 2022/08/16 16:54(火)
+  usa <- res$input$use.index # Use Index At
+
   d_tmp <- matrix(NA,
                   nrow = length(used_index[1,]),
                   ncol = length(used_index[,1])*8+4)
@@ -633,17 +636,17 @@ plot_residual_vpa <- function(res, index_name = NULL, plot_smooth = FALSE, plot_
   name_tmp1 <- name_tmp2 <- name_tmp3 <- name_tmp4 <- name_tmp5 <- numeric()
 
   for(i in 1:length(res$q)){
-    if(length(res$input$min.age)==1) min_age_tmp <- res$input$min.age[1] else min_age_tmp <- res$input$min.age[i]
-    if(length(res$input$min.age)==1) max_age_tmp <- res$input$max.age[1] else max_age_tmp <- res$input$max.age[i]
+    if(length(res$input$min.age)==1) min_age_tmp <- res$input$min.age else min_age_tmp <- res$input$min.age[usa][i]
+    if(length(res$input$min.age)==1) max_age_tmp <- res$input$max.age else max_age_tmp <- res$input$max.age[usa][i]
 
     resid_tmp <- log(d_tmp[,i+1]) - log(res$pred.index[i,]) # 対数残差
     sd_resid_tmp <- resid_tmp/sd(resid_tmp, na.rm = TRUE) # 対数残差の標準化残差
 
     #abund.extractor関数で書き換え #catch.prop引数は不要か
-    d_tmp[,(i+length(res$q)*1+4)] <- abund.extractor(abund = res$input$abund[i], naa = res$naa, faa = res$faa,
+    d_tmp[,(i+length(res$q)*1+4)] <- abund.extractor(abund = res$input$abund[usa][i], naa = res$naa, faa = res$faa,
                                                      dat = res$input$dat,
-                                                     min.age = res$input$min.age[i], max.age = res$input$max.age[i],
-                                                     link = res$input$link, base = res$input$base, af = res$input$af,
+                                                     min.age = min_age_tmp, max.age = max_age_tmp,
+                                                     link = res$input$link, base = res$input$base, af = res$input$af[usa][i],
                                                      sel.def = res$input$sel.def, p.m=res$input$p.m,
                                                      omega=res$input$omega, scale=1) #res$input$scale)
                                                     #res$ssbはスケーリングしていない結果が出ている(2021/06/09KoHMB)
