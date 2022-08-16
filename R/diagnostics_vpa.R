@@ -788,7 +788,6 @@ plot_residual_vpa <- function(res, index_name = NULL, plot_smooth = FALSE, plot_
     xlab("Year") +
     theme_SH(base_size = 14)
 
-  # NOTE: ここにbugがある. use.index に対応していない. JK-junkin 2022/08/16
   # 資源量と指数の（非）線形性のプロット
   Lab_tmp <- unique(d_tidy$Index_Label)
   predIndex_g3 <- predabund_g3 <- list()
@@ -798,7 +797,11 @@ plot_residual_vpa <- function(res, index_name = NULL, plot_smooth = FALSE, plot_
                               seq(#min(tmp_data$pred, na.rm = T),
                                 0, max(tmp_data$pred, na.rm = T), length=100))
     predabund_g3[[i]] <- (as.numeric(predIndex_g3[[i]])/res$q[i])^(1/res$b[i])
+    # NOTE: ここにbugがあった. use.index に未対応だった. JK-junkin 2022/08/16
     tmp <- str_split(res$input$abund[res$input$use.index][i], "") %>% unlist()
+    # NOTE: ここも, input$scale が use.indexに対応できていない (現状1つしかscale
+    # は指定できない) ため, 描画後に応急処置をしないといけない. scaleを複数指定
+    # できる仕様に変更が必要. 2022/08/16 16:18(火)
     if(sum(tmp == "N") == 0) predabund_g3[[i]] <- predabund_g3[[i]]*res$input$scale
   }
   # 横軸に資源量（指数に合わせてSSBやNだったり）、縦軸に予測CPUEを
