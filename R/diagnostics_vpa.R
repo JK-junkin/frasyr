@@ -359,6 +359,7 @@ do_retrospective_vpa <- function(res,
   # vpa内でbの推定をしていないにもかかわらず、b_reestがtrueで入力された場合
   # 推定結果(bを推定している)は得られるが、メッセージを出す
 
+  # NOTE: 2段階法でres_step1を忘れた場合に止まって欲しい. 2022/08/19 17:22(金)
   if (!is.null(res_step1)) { #二段階法の場合のレトロ    i
     retro_step_one <- retro.est(res_step1, n = n_retro)
     yy <- ifelse(res$input$last.catch.zero,2,1)
@@ -806,7 +807,7 @@ plot_residual_vpa <- function(res, index_name = NULL, plot_smooth = FALSE, plot_
 #                                 0, max(tmp_data$pred, na.rm = TRUE), length = 1001))
     predabund_g3[[i]] <- (as.numeric(predIndex_g3[[i]])/res$q[i])^(1/res$b[i])
     # NOTE: ここにbugがあった. use.index に未対応だった. JK-junkin 2022/08/16
-    tmp <- str_split(res$input$abund[res$input$use.index][i], "") %>% unlist()
+    tmp <- str_split(res$input$abund[usa][i], "") %>% unlist()
     # NOTE: ここも, input$scale が use.indexに対応できていない (現状1つしかscale
     # は指定できない) ため, 描画後に応急処置をしないといけない. scaleを複数指定
     # できる仕様に変更が必要. 2022/08/16 16:18(火)
